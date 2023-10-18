@@ -12,8 +12,8 @@
         <!--WEATHER CARD-->
         <div class="card" id="weather-card">
             <div id="weather-search">
-                <input type="text" placeholder="Enter City Name" spellcheck="false" onkeypress="if(event.keyCode == 13){getWeatherInfo(document.querySelector('#weather-search input').value, document)}">
-                <button onclick="getWeatherInfo(document.querySelector('#weather-search input').value, document)"><img src="images/weather/search.png"></button>
+                <input type="text" placeholder="Enter City Name" spellcheck="false" onkeypress="if(event.keyCode == 13){getWeatherInfo(document.querySelector('#weather-search input').value)}">
+                <button onclick="getWeatherInfo(document.querySelector('#weather-search input').value)"><img src="images/weather/search.png"></button>
             </div>
             <div id="weather-error">
                 <p>Invalid city name, please try again</p>
@@ -48,37 +48,41 @@
                     <input type="text" disabled="disabled">
                 </div>
                 <div class="calc-btn-row">
-                    <button class="calc-btn" onclick="clearAll(document)">AC</button>
-                    <button class="calc-btn" onclick="processDel(document)">DEL</button>
-                    <button class="calc-btn" onclick="processOp('^', document, this)">X<sup>y</sup></button>
-                    <button class="calc-btn" onclick="processOp('/', document, this)">/</button>
+                    <button class="calc-btn" onclick="clearAll()">AC</button>
+                    <button class="calc-btn" onclick="processDel()">DEL</button>
+                    <button class="calc-btn" onclick="processOp('^', this)">X<sup>y</sup></button>
+                    <button class="calc-btn" onclick="processOp('/', this)">/</button>
                 </div>
                 <div class="calc-btn-row">
-                    <button class="calc-btn" onclick="processNum('7', document)">7</button>
-                    <button class="calc-btn" onclick="processNum('8', document)">8</button>
-                    <button class="calc-btn" onclick="processNum('9', document)">9</button>
-                    <button class="calc-btn" onclick="processOp('*', document, this)">*</button>
+                    <button class="calc-btn" onclick="processNum('7')">7</button>
+                    <button class="calc-btn" onclick="processNum('8')">8</button>
+                    <button class="calc-btn" onclick="processNum('9')">9</button>
+                    <button class="calc-btn" onclick="processOp('*', this)">*</button>
                 </div>
                 <div class="calc-btn-row">
-                    <button class="calc-btn" onclick="processNum('4', document)">4</button>
-                    <button class="calc-btn" onclick="processNum('5', document)">5</button>
-                    <button class="calc-btn" onclick="processNum('6', document)">6</button>
-                    <button class="calc-btn" onclick="processOp('+', document, this)">+</button>
+                    <button class="calc-btn" onclick="processNum('4')">4</button>
+                    <button class="calc-btn" onclick="processNum('5')">5</button>
+                    <button class="calc-btn" onclick="processNum('6')">6</button>
+                    <button class="calc-btn" onclick="processOp('+', this)">+</button>
                 </div>
                 <div class="calc-btn-row">
-                    <button class="calc-btn" onclick="processNum('1', document)">1</button>
-                    <button class="calc-btn" onclick="processNum('2', document)">2</button>
-                    <button class="calc-btn" onclick="processNum('3', document)">3</button>
-                    <button class="calc-btn" onclick="processOp('-', document, this)">-</button>
+                    <button class="calc-btn" onclick="processNum('1')">1</button>
+                    <button class="calc-btn" onclick="processNum('2')">2</button>
+                    <button class="calc-btn" onclick="processNum('3')">3</button>
+                    <button class="calc-btn" onclick="processOp('-', this)">-</button>
                 </div>
                 <div class="calc-btn-row">
-                    <button class="calc-btn" onclick="processNeg(document)">±</button>
-                    <button class="calc-btn" onclick="processNum('0', document)">0</button>
-                    <button class="calc-btn" onclick="processDec(document)">.</button>
-                    <button class="calc-btn" onclick="calcEquation(document)">=</button>
+                    <button class="calc-btn" onclick="processNeg()">±</button>
+                    <button class="calc-btn" onclick="processNum('0')">0</button>
+                    <button class="calc-btn" onclick="processDec()">.</button>
+                    <button class="calc-btn" onclick="calcEquation()">=</button>
                 </div>
             </div>
             <script src="scripts/calculator.js"></script>
+        </div>
+        <!--WORDLE CARD-->
+        <div class="card" id="wordle-card">
+            <script src="scripts/wordle.js"></script>
         </div>
     </div>
 </body>

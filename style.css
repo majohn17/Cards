@@ -9,17 +9,19 @@ body {
 }
 .card-grid {
     display: flex;
+    flex-wrap: wrap;
 }
 .card {
     min-width: 470px;
     max-width: 470px;
+    height: 562px;
     color: #fff;
-    margin: 100px auto 0;
+    margin: 50px auto 0;
     border-radius: 20px;
     padding: 35px 35px;
     text-align: center;
+    transition: opacity 0.2s;
 }
-
 /* Weather Card */
 #weather-card.card {
     background: linear-gradient(135deg, #622eda, #ab92e6);
@@ -101,7 +103,6 @@ body {
 /* Calculator Card */
 #calc-card.card {
     background: linear-gradient(135deg, #ff7b00, #ffd3aa);
-    height: 562px;
 }
 #calc-container {
     width: 100%;
@@ -142,4 +143,39 @@ body {
     font-weight: 500px;
     background: #000000;
     color: #ffffff;
+}
+/* Wordle Card */
+#wordle-card.card {
+    background: #000000;
+    opacity: 0.2;
+}
+#wordle-card.card:hover {
+    opacity: 1;
+}
+#wordle-grid {
+    display: grid;
+    justify-content: center;
+    place-items: center;
+    grid-template-rows: repeat(6, auto);
+    grid-template-columns: repeat(5, auto);
+}
+.box {
+    width: 74px;
+    height: 74px;
+    margin: 4px;
+    border: 2px solid #3a3a3c;
+    background: #121213;
+    display: grid;
+    place-items: center;
+    text-transform: uppercase;
+    font-size: 2.4rem;
+}
+.box.empty {
+    background: #3a3a3c;
+}
+.box.wrong {
+    background: #b59f3b;
+}
+.box.right {
+    background: #538d4e;
 }
