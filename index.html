@@ -10,89 +10,40 @@
 <body>
     <div class="card-grid">
         <!--WEATHER CARD-->
-        <div class="card">
-            <div class="weather-search">
-                <input type="text" placeholder="Enter City Name" spellcheck="false">
-                <button><img src="images/weather/search.png"></button>
+        <div class="card" id="weather-card">
+            <div id="weather-search">
+                <input type="text" placeholder="Enter City Name" spellcheck="false" onkeypress="if(event.keyCode == 13){getWeatherInfo(document.querySelector('#weather-search input').value, document)}">
+                <button onclick="getWeatherInfo(document.querySelector('#weather-search input').value, document)"><img src="images/weather/search.png"></button>
             </div>
-            <div class="weather-error">
+            <div id="weather-error">
                 <p>Invalid city name, please try again</p>
             </div>
-            <div class="weather-info">
-                <img src="images/weather/rain.png" class="weather-icon">
-                <h1 class="weather-temp"></h1>
-                <h2 class="weather-city"></h2>
-                <div class="weather-details">
+            <div id="weather-info">
+                <img src="images/weather/rain.png" id="weather-icon">
+                <h1 id="weather-temp"></h1>
+                <h2 id="weather-city"></h2>
+                <div id="weather-details">
                     <div class="weather-col">
                         <img src="images/weather/humidity.png">
                         <div>
-                            <p class="weather-humidity"></p>
+                            <p id="weather-humidity"></p>
                             <p></p>
                         </div>
                     </div>
                     <div class="weather-col">
                         <img src="images/weather/wind.png">
                         <div>
-                            <p class="weather-wind"></p>
+                            <p id="weather-wind"></p>
                             <p></p>
                         </div>
                     </div>
                 </div>
             </div>
-    
-            <script id="weather-script">
-                var apiKey = "f8d7314e87890b9ff6db65d1e9608a4a";
-                var apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=imperial&q=";
-        
-                var weatherSearchBox = document.querySelector(".weather-search input");
-                var weatherSearchBtn = document.querySelector(".weather-search button");
-                var weatherIcon = document.querySelector(".weather-icon");
-        
-                async function getWeatherInfo(city) {
-                    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-                    if (response.status == 404) {
-                        document.querySelector(".weather-error").style.display = "block";
-                        document.querySelector(".weather-info").style.display = "none";
-                    } else {
-                        var data = await response.json();
-        
-                        document.querySelector(".weather-city").innerHTML = data.name;
-                        document.querySelector(".weather-temp").innerHTML = Math.round(data.main.temp) + "°F";
-                        document.querySelector(".weather-humidity").innerHTML = data.main.humidity + "%";
-                        document.querySelector(".weather-wind").innerHTML = data.wind.speed + " mph";
-        
-                        if(data.weather[0].main == "Clouds") {
-                            weatherIcon.src = "images/weather/clouds.png";
-                        }
-                        else if(data.weather[0].main == "Clear") {
-                            weatherIcon.src = "images/weather/clear.png";
-                        }
-                        else if(data.weather[0].main == "Rain") {
-                            weatherIcon.src = "images/weather/rain.png";
-                        }
-                        else if(data.weather[0].main == "Drizzle") {
-                            weatherIcon.src = "images/weather/drizzle.png";
-                        }
-                        else if(data.weather[0].main == "Mist") {
-                            weatherIcon.src = "images/weather/mist.png";
-                        }
-        
-                        document.querySelector(".weather-error").style.display = "none";
-                        document.querySelector(".weather-info").style.display = "block";
-                    }
-                }
-        
-                weatherSearchBtn.addEventListener("click", ()=>{
-                    getWeatherInfo(weatherSearchBox.value);
-                })
-                weatherSearchBox.addEventListener("keydown", (event)=>{
-                    if (event.keyCode == 13) {
-                        getWeatherInfo(weatherSearchBox.value);
-                    }
-                })
-            </script>
+            <script src="scripts/weather.js"></script>
         </div>
         <!--NEXT CARD-->
+        <div class="card" id="calc-card">
+        </div>
     </div>
     
 </body>

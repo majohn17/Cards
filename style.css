@@ -7,23 +7,32 @@
 body {
     background: #202020;
 }
+.card-grid {
+    display: flex;
 .card {
     width: 90%;
     max-width: 470px;
-    background: linear-gradient(135deg, #622eda, #ab92e6);
     color: #fff;
     margin: 100px auto 0;
     border-radius: 20px;
     padding: 40px 35px;
     text-align: center;
 }
-.weather-search {
+
+/* Weather Card */
+#weather-card.card {
+    background: linear-gradient(135deg, #622eda, #ab92e6);
+}
+#calc-card.card {
+    background: linear-gradient(135deg, #ff7b00, #ffc58e);
+}
+#weather-search {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.weather-search input {
+#weather-search input {
     border: 0;
     outline: 0;
     background: #efebff;
@@ -35,7 +44,7 @@ body {
     margin-right: 16px;
     font-size: 18px;
 }
-.weather-search button {
+#weather-search button {
     border: 0;
     outline: 0;
     background: #efebff;
@@ -44,23 +53,23 @@ body {
     height: 60px;
     cursor: pointer;
 }
-.weather-search button img {
+#weather-search button img {
     width: 16px;
 }
-.weather-icon {
+#weather-icon {
     width: 170px;
     margin-top: 30px;
 }
-.weather-info h1 {
+#weather-info h1 {
     font-size: 80px;
     font-weight: 500;
 }
-.weather-info h2 {
+#weather-info h2 {
     font-size: 45px;
     font-weight: 500;
     margin-top: -10px;
 }
-.weather-details {
+#weather-details {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -76,17 +85,19 @@ body {
     width: 45px;
     margin-right: 10px;
 }
-.weather-humidity, .weather-wind {
+#weather-humidity, #weather-wind {
     font-size: 28px;
     margin-top: -6px;
 }
-.weather-info {
+#weather-info {
     display: none;
 }
-.weather-error {
+#weather-error {
     text-align: left;
     margin-left: 10px;
     font-size: 14px;
     margin-top: 10px;
     display: none;
 }
+
+/* Calculator Card */
