@@ -9,6 +9,7 @@ body {
 }
 .card-grid {
     display: flex;
+}
 .card {
     width: 90%;
     max-width: 470px;
