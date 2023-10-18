@@ -45,39 +45,40 @@
         <div class="card" id="calc-card">
             <div id="calc-container">
                 <div id="calc-display">
-                    <input type="text">
+                    <input type="text" disabled="disabled">
                 </div>
-                <div class="btnRow">
-                    <button>AC</button>
-                    <button>DEL</button>
-                    <button>%</button>
-                    <button>/</button>
+                <div class="calc-btn-row">
+                    <button class="calc-btn" onclick="clearAll(document)">AC</button>
+                    <button class="calc-btn" onclick="processDel(document)">DEL</button>
+                    <button class="calc-btn" onclick="processOp('^', document, this)">X<sup>y</sup></button>
+                    <button class="calc-btn" onclick="processOp('/', document, this)">/</button>
                 </div>
-                <div class="btnRow">
-                    <button>7</button>
-                    <button>8</button>
-                    <button>9</button>
-                    <button>*</button>
+                <div class="calc-btn-row">
+                    <button class="calc-btn" onclick="processNum('7', document)">7</button>
+                    <button class="calc-btn" onclick="processNum('8', document)">8</button>
+                    <button class="calc-btn" onclick="processNum('9', document)">9</button>
+                    <button class="calc-btn" onclick="processOp('*', document, this)">*</button>
                 </div>
-                <div class="btnRow">
-                    <button>4</button>
-                    <button>5</button>
-                    <button>6</button>
-                    <button>+</button>
+                <div class="calc-btn-row">
+                    <button class="calc-btn" onclick="processNum('4', document)">4</button>
+                    <button class="calc-btn" onclick="processNum('5', document)">5</button>
+                    <button class="calc-btn" onclick="processNum('6', document)">6</button>
+                    <button class="calc-btn" onclick="processOp('+', document, this)">+</button>
                 </div>
-                <div class="btnRow">
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>-</button>
+                <div class="calc-btn-row">
+                    <button class="calc-btn" onclick="processNum('1', document)">1</button>
+                    <button class="calc-btn" onclick="processNum('2', document)">2</button>
+                    <button class="calc-btn" onclick="processNum('3', document)">3</button>
+                    <button class="calc-btn" onclick="processOp('-', document, this)">-</button>
                 </div>
-                <div class="btnRow">
-                    <button>+-</button>
-                    <button>0</button>
-                    <button>.</button>
-                    <button>AC</button>
+                <div class="calc-btn-row">
+                    <button class="calc-btn" onclick="processNeg(document)">±</button>
+                    <button class="calc-btn" onclick="processNum('0', document)">0</button>
+                    <button class="calc-btn" onclick="processDec(document)">.</button>
+                    <button class="calc-btn" onclick="calcEquation(document)">=</button>
                 </div>
             </div>
+            <script src="scripts/calculator.js"></script>
         </div>
     </div>
 </body>
