@@ -5,7 +5,7 @@ async function getWeatherInfo(city, doc) {
 
     try {
         var response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-        if (repsponse.status == 404) {
+        if (response.status == 404) {
             doc.getElementById("weather-error").style.display = "block";
             doc.getElementById("weather-info").style.display = "none";
         }
@@ -38,6 +38,7 @@ async function getWeatherInfo(city, doc) {
         }
     }
     catch (err) {
+        console.log(response)
         doc.getElementById("weather-error").style.display = "block";
         doc.getElementById("weather-info").style.display = "none";
     }
