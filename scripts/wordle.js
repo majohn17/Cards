@@ -2,7 +2,7 @@ const dictionary = ['earth', 'plane', 'train', 'dense', 'audio', 'offer', 'climb
 const gameState = {
     active: false,
     complete: false,
-    secret: dictionary[Math.floor(Math.random() * dictionary.length)],
+    word: dictionary[Math.floor(Math.random() * dictionary.length)],
     grid: Array(6).fill().map(() => Array(5).fill('')),
     currRow: 0,
     currCol: 0,
@@ -18,7 +18,7 @@ function drawBox(container, row, col, letter = '') {
     return box;
 }
 
-function drawGrid(container) {
+function drawGame(container) {
     const grid = document.createElement('div');
     grid.id = 'wordle-grid';
 
@@ -31,7 +31,7 @@ function drawGrid(container) {
     container.appendChild(grid);
 }
 
-function updateGrid() {
+function updateGame() {
     for (let i = 0; i < gameState.grid.length; i++) {
         for (let j = 0; j < gameState.grid[i].length; j++) {
             const box = document.getElementById(`box${i}${j}`);
@@ -40,35 +40,43 @@ function updateGrid() {
     }
 }
 
-function processWord(guess) {
+function processGuess(guess) {
     const row = gameState.currRow;
+    const anim_len = 500;
 
     for (let i = 0; i < 5; i++) {
         const box = document.getElementById(`box${row}${i}`);
         const letter = box.textContent;
         
-        if (letter === gameState.secret[i]) {
-            box.classList.add('right');
-        }
-        else if (gameState.secret.includes(letter)) {
-            box.classList.add('wrong');
-        }
-        else {
-            box.classList.add('empty')
-        }
+        setTimeout(() => {
+            if (letter === gameState.word[i]) {
+                box.classList.add('right');
+            }
+            else if (gameState.word.includes(letter)) {
+                box.classList.add('wrong');
+            }
+            else {
+                box.classList.add('empty');
+            }
+        }, ((i + 1) * anim_len) / 2);
+
+        box.classList.add('box-animate');
+        box.style.animationDelay = `${(i * anim_len) / 2}ms`;
     }
 
-    const isWinner = gameState.secret === guess;
+    const isWinner = gameState.word === guess;
     const isGameOver = gameState.currentRow === 5;
 
-    if (isWinner) {
-        alert('CONGRATULATIONS!!!')
-        gameState.complete = true;
-    } 
-    else if (isGameOver) {
-        alert (`Game Over. The correct word was ${gameState.secret} :(`)
-        gameState.complete = true;
-    }
+    setTimeout(() => {
+        if (isWinner) {
+            alert('CONGRATULATIONS!!!');
+            gameState.complete = true;
+        } 
+        else if (isGameOver) {
+            alert(`Game Over. The correct word was ${gameState.word} :(`);
+            gameState.complete = true;
+        }
+    }, 3 * anim_len);
 }
 
 function registerEvents() {
@@ -86,22 +94,22 @@ function registerEvents() {
             if (key.length === 1 && (/[a-z]/i).test(key) && gameState.currCol !== 5) {
                 gameState.grid[gameState.currRow][gameState.currCol] = key.toLowerCase();
                 gameState.currCol++;
-                updateGrid();
+                updateGame();
             }
             // If backspace has been pressed and the current row isn't empty
             if (key === 'Backspace' && gameState.currCol !== 0) {
                 gameState.grid[gameState.currRow][gameState.currCol - 1] = '';
                 gameState.currCol--;
-                updateGrid();
+                updateGame();
             }
             // If enter has been pressed and current row is full
             if (key === 'Enter' && gameState.currCol === 5) {
-                const currWord = gameState.grid[gameState.currRow].reduce((prev, curr) => prev + curr);
-                if (dictionary.includes(currWord)) {
-                    processWord();
+                const currGuess = gameState.grid[gameState.currRow].reduce((prev, curr) => prev + curr);
+                if (dictionary.includes(currGuess)) {
+                    processGuess();
                     gameState.currRow++;
                     gameState.currCol = 0;
-                    updateGrid();
+                    updateGame();
                 }
                 else {
                     alert('INVALID WORD, TRY AGAIN');
@@ -113,7 +121,7 @@ function registerEvents() {
 
 function startGame() {
     const game = document.getElementById('wordle-card');
-    drawGrid(game);
+    drawGame(game);
 
     registerEvents();
 }

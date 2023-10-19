@@ -26,6 +26,7 @@ body {
 .card:hover {
     opacity: 1;
 }
+
 /* Weather Card */
 #weather-card.card {
     background: linear-gradient(135deg, #622eda, #ab92e6);
@@ -148,6 +149,7 @@ body {
     background: #000000;
     color: #ffffff;
 }
+
 /* Wordle Card */
 #wordle-card.card {
     background: #000000;
@@ -155,7 +157,6 @@ body {
 #wordle-grid {
     display: grid;
     justify-content: center;
-    place-items: center;
     grid-template-rows: repeat(6, auto);
     grid-template-columns: repeat(5, auto);
 }
@@ -164,7 +165,6 @@ body {
     height: 74px;
     margin: 4px;
     border: 2px solid #3a3a3c;
-    border-radius: 10px;
     background: #121213;
     display: grid;
     place-items: center;
@@ -173,10 +173,27 @@ body {
 }
 .box.empty {
     background: #3a3a3c;
+    border: 2px solid #3a3a3c;
 }
 .box.wrong {
     background: #b59f3b;
+    border: 2px solid #b59f3b;
 }
 .box.right {
     background: #538d4e;
+    border: 2px solid #538d4e;
+}
+.box-animate {
+    animation: compress 0.5s ease;
+}
+@keyframes compress {
+    0% {
+        transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(0);
+    }
+    100% {
+        transform: scaleY(1);
+    }
 }
