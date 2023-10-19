@@ -1,12 +1,27 @@
-const dictionary = ['earth', 'plane', 'train', 'dense', 'audio', 'offer', 'climb', 'fluff'];
+var words = [];
 const gameState = {
     active: false,
     complete: false,
-    word: dictionary[Math.floor(Math.random() * dictionary.length)],
+    word: words[Math.floor(Math.random() * words.length)],
     grid: Array(6).fill().map(() => Array(5).fill('')),
     currRow: 0,
     currCol: 0,
 };
+
+function readFile(file)
+{
+    var f = new XMLHttpRequest();
+    f.open("GET", file, false);
+    f.onreadystatechange = function () {
+        if(f.readyState === 4) {
+            if(f.status === 200 || f.status == 0) {
+                var res = f.responseText;
+                return res;
+            }
+        }
+    }
+    f.send(null);
+}
 
 function drawBox(container, row, col, letter = '') {
     const box = document.createElement('div');
@@ -105,7 +120,7 @@ function registerEvents() {
             // If enter has been pressed and current row is full
             if (key === 'Enter' && gameState.currCol === 5) {
                 const currGuess = gameState.grid[gameState.currRow].reduce((prev, curr) => prev + curr);
-                if (dictionary.includes(currGuess)) {
+                if (words.includes(currGuess)) {
                     processGuess(currGuess);
                     gameState.currRow++;
                     gameState.currCol = 0;
@@ -119,9 +134,14 @@ function registerEvents() {
     }
 }
 
-function startGame() {
+async function startGame() {
     const game = document.getElementById('wordle-card');
     drawGame(game);
+
+    const res = await fetch("../data/words.txt");
+    const data = await res.text();
+    words = data.split('\n');
+    gameState.word = words[Math.floor(Math.random() * words.length)];
 
     registerEvents();
 }
