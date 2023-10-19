@@ -154,6 +154,37 @@ body {
 #wordle-card.card {
     background: #000000;
 }
+#wordle-bar {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    margin-right: 14px;
+}
+#wordle-bar input {
+    border: 0;
+    width: 80%;
+    background: #000000;
+    color: #ffffff;
+    text-align: left;
+    font-weight: 500px;
+}
+#wordle-bar button {
+    width: 18%;
+    height: 30px;
+    border-radius: 20px;
+    border: 2px solid #3a3a3c;
+    background: #121213;
+    color: #ffffff;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: 500px;
+}
+#wordle-bar button:hover, #wordle-bar button:focus {
+    background: #3a3a3c;
+    border: 2px solid #3a3a3c;
+}
 #wordle-grid {
     display: grid;
     justify-content: center;
@@ -161,8 +192,8 @@ body {
     grid-template-columns: repeat(5, auto);
 }
 .box {
-    width: 74px;
-    height: 74px;
+    width: 68px;
+    height: 68px;
     margin: 4px;
     border: 2px solid #3a3a3c;
     background: #121213;
