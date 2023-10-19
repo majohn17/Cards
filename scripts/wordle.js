@@ -140,8 +140,8 @@ async function startGame() {
 
     const res = await fetch("../data/words.txt");
     const data = await res.text();
-    words = data.split('\n');
-    gameState.word = words[Math.floor(Math.random() * words.length)];
+    words = await data.split('\n');
+    gameState.word = await words[Math.floor(Math.random() * words.length)];
 
     registerEvents();
 }
