@@ -65,7 +65,7 @@ function processGuess(guess) {
     }
 
     const isWinner = gameState.word === guess;
-    const isGameOver = gameState.currentRow === 5;
+    const isGameOver = gameState.currRow === 5;
 
     setTimeout(() => {
         if (isWinner) {
@@ -106,7 +106,7 @@ function registerEvents() {
             if (key === 'Enter' && gameState.currCol === 5) {
                 const currGuess = gameState.grid[gameState.currRow].reduce((prev, curr) => prev + curr);
                 if (dictionary.includes(currGuess)) {
-                    processGuess();
+                    processGuess(currGuess);
                     gameState.currRow++;
                     gameState.currCol = 0;
                     updateGame();
