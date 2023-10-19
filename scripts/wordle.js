@@ -1,6 +1,7 @@
-const dictionary = ['earth', 'plane', 'train', 'dense', 'audio', 'offer', 'climb', 'fluff']
+const dictionary = ['earth', 'plane', 'train', 'dense', 'audio', 'offer', 'climb', 'fluff'];
 const gameState = {
     active: false,
+    complete: false,
     secret: dictionary[Math.floor(Math.random() * dictionary.length)],
     grid: Array(6).fill().map(() => Array(5).fill('')),
     currRow: 0,
@@ -39,15 +40,7 @@ function updateGrid() {
     }
 }
 
-function getCurrentWord() {
-    return gameState.grid[gameState.currRow].reduce((prev, curr) => prev + curr);
-}
-
-function isValidWord(word) {
-    return dictionary.includes(word);
-}
-
-function revealWord(guess) {
+function processWord(guess) {
     const row = gameState.currRow;
 
     for (let i = 0; i < 5; i++) {
@@ -70,60 +63,50 @@ function revealWord(guess) {
 
     if (isWinner) {
         alert('CONGRATULATIONS!!!')
+        gameState.complete = true;
     } 
     else if (isGameOver) {
         alert (`Game Over. The correct word was ${gameState.secret} :(`)
+        gameState.complete = true;
     }
 }
 
-function isLetter(key) {
-    return key.length === 1 && key.match(/[a-z]/i);
-}
-
-function addLetter(letter) {
-    if (gameState.currCol === 5) return;
-    gameState.grid[gameState.currRow][gameState.currCol] = letter;
-    gameState.currCol++;
-}
-
-function removeLetter(letter) {
-    if (gameState.currCol === 0) return;
-    gameState.grid[gameState.currRow][gameState.currCol - 1] = '';
-    gameState.currCol--;
-}
-
-function registerKeyboardEvents() {
+function registerEvents() {
     gameCard = document.getElementById('wordle-card');
     gameCard.onmouseover = () => {
         gameState.active = true;
     }
-    gameCard.onmouseout = () => {
+    gameCard.onmouseleave = () => {
         gameState.active = false;
     }
     document.body.onkeydown = (e) => {
-        if (gameState.active) {
+        if (gameState.active && !gameState.complete) {
             const key = e.key;
-            if (key === 'Enter') {
-                if (gameState.currCol === 5) {
-                    const word = getCurrentWord();
-                    if (isValidWord(word)) {
-                        revealWord();
-                        gameState.currRow++;
-                        gameState.currCol = 0;
-                    }
-                    else {
-                        alert('INVALID WORD, TRY AGAIN')
-                    }
+            // If a single letter has been pressed and the current row isn't full
+            if (key.length === 1 && (/[a-z]/i).test(key) && gameState.currCol !== 5) {
+                gameState.grid[gameState.currRow][gameState.currCol] = key.toLowerCase();
+                gameState.currCol++;
+                updateGrid();
+            }
+            // If backspace has been pressed and the current row isn't empty
+            if (key === 'Backspace' && gameState.currCol !== 0) {
+                gameState.grid[gameState.currRow][gameState.currCol - 1] = '';
+                gameState.currCol--;
+                updateGrid();
+            }
+            // If enter has been pressed and current row is full
+            if (key === 'Enter' && gameState.currCol === 5) {
+                const currWord = gameState.grid[gameState.currRow].reduce((prev, curr) => prev + curr);
+                if (dictionary.includes(currWord)) {
+                    processWord();
+                    gameState.currRow++;
+                    gameState.currCol = 0;
+                    updateGrid();
+                }
+                else {
+                    alert('INVALID WORD, TRY AGAIN');
                 }
             }
-            if (key === 'Backspace') {
-                removeLetter();
-            }
-            if (isLetter(key)) {
-                addLetter(key);
-            }
-    
-            updateGrid();
         }
     }
 }
@@ -132,7 +115,7 @@ function startGame() {
     const game = document.getElementById('wordle-card');
     drawGrid(game);
 
-    registerKeyboardEvents();
+    registerEvents();
 }
 
 startGame();

@@ -46,10 +46,9 @@ async function getWeatherInfo(city) {
 }
 
 function registerUnfocus() {
-    const input = document.querySelector('#weather-search input');
     document.getElementById('weather-card').onmouseleave = () => {
-        input.value = '';
-        input.blur();
+        document.querySelector('#weather-search input').value = '';
+        document.activeElement.blur();
     }
 }
 
