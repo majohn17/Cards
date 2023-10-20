@@ -13,25 +13,25 @@
         <div class="card" id="weather-card">
             <div id="weather-search">
                 <input type="text" placeholder="Enter City Name" spellcheck="false" onkeypress="if(event.keyCode == 13){getWeatherInfo(document.querySelector('#weather-search input').value)}">
-                <button onclick="getWeatherInfo(document.querySelector('#weather-search input').value)"><img src="images/weather/search.png"></button>
+                <button onclick="getWeatherInfo(document.querySelector('#weather-search input').value)"><img src="media/images/weather/search.png"></button>
             </div>
             <div id="weather-error">
                 <p>Invalid city name, please try again</p>
             </div>
             <div id="weather-info">
-                <img src="images/weather/rain.png" id="weather-icon">
+                <img src="media/images/weather/rain.png" id="weather-icon">
                 <h1 id="weather-temp"></h1>
                 <h2 id="weather-city"></h2>
                 <div id="weather-details">
                     <div class="weather-col">
-                        <img src="images/weather/humidity.png">
+                        <img src="media/images/weather/humidity.png">
                         <div>
                             <p id="weather-humidity"></p>
                             <p></p>
                         </div>
                     </div>
                     <div class="weather-col">
-                        <img src="images/weather/wind.png">
+                        <img src="media/images/weather/wind.png">
                         <div>
                             <p id="weather-wind"></p>
                             <p></p>
@@ -87,6 +87,10 @@
                 <button>RESET</button>
             </div>
             <script src="scripts/wordle.js"></script>
+        </div>
+        <!--MUSIC PLAYER CARD-->
+        <div class="card" id="music-card">
+            <script src="scripts/music.js"></script>
         </div>
     </div>
 </body>

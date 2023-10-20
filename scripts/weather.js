@@ -18,19 +18,19 @@ async function getWeatherInfo(city) {
             document.getElementById('weather-wind').innerHTML = data.wind.speed + ' mph';
         
             if(data.weather[0].main == 'Clouds') {
-                weatherIcon.src = 'images/weather/clouds.png';
+                weatherIcon.src = 'media/images/weather/clouds.png';
             }
             else if(data.weather[0].main == 'Clear') {
-                weatherIcon.src = 'images/weather/clear.png';
+                weatherIcon.src = 'media/images/weather/clear.png';
             }
             else if(data.weather[0].main == 'Rain') {
-                weatherIcon.src = 'images/weather/rain.png';
+                weatherIcon.src = 'media/images/weather/rain.png';
             }
             else if(data.weather[0].main == 'Drizzle') {
-                weatherIcon.src = 'images/weather/drizzle.png';
+                weatherIcon.src = 'media/images/weather/drizzle.png';
             }
             else if(data.weather[0].main == 'Mist') {
-                weatherIcon.src = 'images/weather/mist.png';
+                weatherIcon.src = 'media/images/weather/mist.png';
             }
         
             document.getElementById('weather-error').style.display = 'none';
