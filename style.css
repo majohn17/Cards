@@ -26,6 +26,10 @@ body {
 .card:hover {
     opacity: 1;
 }
+.center {
+    display: flex;
+    justify-content: center;
+}
 
 /* Weather Card */
 #weather-card.card {
@@ -231,5 +235,29 @@ body {
 
 /* Music Card */
 #music-card.card {
-    background: linear-gradient(135deg, #ed63ff, #f7bbff);
+    background: linear-gradient(135deg, #ed63ff, #fad3ff);
+}
+#music-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.music-circle {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: #000000;
+    color: #f5acff;
+    box-shadow: 0 5px 10px rgba(255, 26, 26, 0.22);
+    opacity: 0.8;
+}
+#song-circle.music-circle {
+    width: 280px;
+    height: 276px;
+}
+#music-img {
+    width: 275px;
+    border-radius: 50%;
+    box-shadow: 0 10px 60px rgba(255, 26, 26, 0.22);
 }
